@@ -13,9 +13,6 @@ class PurchaseOrderServiceTest extends PHPUnit_Framework_TestCase
 {
     protected $client;
 
-    private $username = 'demo';
-    private $password = 'pwd1234';
-
     private $base_url = 'https://api.cartoncloud.com.au/CartonCloud_Demo/PurchaseOrders/';
     private $carton_cloud_user_name = 'interview-test@cartoncloud.com.au';
     private $carton_cloud_password = 'test123456';
@@ -25,9 +22,9 @@ class PurchaseOrderServiceTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $purchase_order_id = 2344;
-        $client = new Client();
+        $this->client = new Client();
         $url = $this->base_url."$purchase_order_id?version=5&associated=true";
-        $this->response = $client->request('GET', $url,
+        $this->response = $this->client->request('GET', $url,
             ['auth' => [
                 $this->carton_cloud_user_name, $this->carton_cloud_password]
             ]);
